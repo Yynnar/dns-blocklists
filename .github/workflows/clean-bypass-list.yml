@@ -28,7 +28,7 @@ jobs:
       - name: Move to output folder
         run: |
           mkdir -p output
-          mv cleaned.txt output/bypass-cleaned.txt
+          mv cleaned.txt bypass-cleaned.txt
 
       - name: Commit only if changed
         run: |
