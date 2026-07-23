@@ -38,7 +38,7 @@ jobs:
           if git diff --quiet; then
             echo "No changes"
           else
-            git add output/bypass-cleaned.txt
+            git add bypass-cleaned.txt
             git commit -m "Update cleaned list"
             git push
           fi
