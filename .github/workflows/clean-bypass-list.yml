@@ -19,26 +19,21 @@ jobs:
 
       - name: Clean and filter list
         run: |
-          # Remove tailscale, comments, empty lines
           grep -vi 'tailscale.com' source.txt | \
           grep -v '^#' | \
           grep -v '^$' | \
-          sort -u > cleaned.txt
-
-      - name: Move to output folder
-        run: |
-          mkdir -p output
-          mv cleaned.txt bypass-cleaned.txt
+          sort -u > bypass-cleaned.txt
 
       - name: Commit only if changed
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
 
-          if git diff --quiet; then
+          git add bypass-cleaned.txt
+
+          if git diff --cached --quiet; then
             echo "No changes"
           else
-            git add bypass-cleaned.txt
             git commit -m "Update cleaned list"
             git push
           fi
