@@ -3500,6 +3500,7 @@
 *.cloud.tezoi.com
 *.cloud.xn--4gq62f52gdss.asia
 *.cloud2.holzmannclouddns.de
+*.cloud25075.info
 *.cloudbenders.fun
 *.cloudbob.fr
 *.cloudburstcdn.com
@@ -3523,6 +3524,7 @@
 *.cloudssh.net
 *.cloudssh.us
 *.cloudtimecdn.com
+*.clouduhtpv.info
 *.cloudvpn.ai
 *.cloudvpn.pro
 *.clovian.ru
@@ -4803,7 +4805,6 @@
 *.dns.controld.com
 *.dns.cooluc.com
 *.dns.corefusion.xyz
-*.dns.criena.net
 *.dns.cryptomize.com
 *.dns.crystalyx.net
 *.dns.csaonline.de
