@@ -1,6 +1,1 @@
-*.infatica-sdk.io
-*.infatica.io
-*.pool.infatica.io
 *.networklinks.space
-*.update.playstation.net
-*.net.playstation.net
