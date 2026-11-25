@@ -5,6 +5,9 @@ on:
     - cron: '0 2 * * *'   # daily
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,19 +18,26 @@ jobs:
 
       - name: Download original list
         run: |
-          curl -L -o source.txt https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh-vpn-proxy-bypass.txt
+          curl -fsSL -o source.txt \
+            https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh-vpn-proxy-bypass.txt
 
       - name: Clean and filter list
         run: |
-          grep -vi 'tailscale.com' source.txt | \
-          grep -v '^#' | \
-          grep -v '^$' | \
-          sort -u > bypass-cleaned.txt
+          grep -v '^#' source.txt \
+            | grep -v '^$' \
+            | grep -viE '(^|[.*])(tailscale\.com|vpn\.mozilla\.org)$' \
+            | sort -u > bypass-cleaned.txt
+
+          # Guard against truncated/empty downloads
+          if [ "$(wc -l < bypass-cleaned.txt)" -lt 100 ]; then
+            echo "Cleaned list suspiciously small, aborting" >&2
+            exit 1
+          fi
 
       - name: Commit only if changed
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add bypass-cleaned.txt
 
