@@ -15054,6 +15054,7 @@
 *.vpn.jogjacloud.com
 *.vpn.lat
 *.vpn.monster
+*.vpn.mozilla.org
 *.vpn.my
 *.vpn.nbvalente.fr
 *.vpn.ncapi.io
